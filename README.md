@@ -1,15 +1,15 @@
 1.把你的U盘插入机器(要先格式化成ext3或者ext4文件系统,可以跟虚拟内存用同一个U盘,不影响)
+
 2.在U盘根目录建立jffs文件夹(通常挂载后在/tmp/mnt/sda1 , 具体以实际情况为主)
-3.下载附件解压  Boom.pdf (1.76 KB, 下载次数: 730) 
-4.上传到/jffs/scripts/(注意要先备份/jffs/scripts/文件夹,方便还原(不然只有格式化jffs救回))
-5.SSH到路由器.然后输入以下命令
+
+3.上传到/jffs/scripts/(注意要先备份/jffs/scripts/文件夹,方便还原(不然只有格式化jffs救回))
+
+4.SSH到路由器.然后输入以下命令
     1)     chmod a+x /jffs/scripts/post-mount
     2)     chmod a+x /jffs/scripts/unmount
     3)     chmod a+x /jffs/scripts/wan-start
     4)     chmod a+x /jffs/scripts/nat-start
-6.重启你的路由器
-
-7.Enjoy~
+5.重启你的路由器
 
 
 
