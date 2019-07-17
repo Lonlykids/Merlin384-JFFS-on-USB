@@ -1,0 +1,7 @@
+#!/bin/sh
+
+kill -9 $(pidof skipd)
+cd /koolshare/perp && sh perp.sh stop
+
+
+
