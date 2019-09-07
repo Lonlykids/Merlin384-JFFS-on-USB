@@ -1,10 +1,4 @@
 #!/bin/sh
-# post-mount script designed to offload jffs to usb.
-# 1. Create folder with name "jffs" under mount usb disk.
-# 2. Create this script as /jffs/scripts/post-mount, chmod a+x it so it can be executed.
-# 3. Be sure to check that 'Enable JFFS custom scripts and configs' is enabled under Administration->System.
-# 4. Create symbolic link /jffs/scripts/unmount to /jffs/scripts/post-mount.
-# 5. Reboot router.
 
 IFS=$'\n'
 
@@ -92,6 +86,7 @@ update_folder ()
 
 cd /koolshare/perp && sh perp.sh stop
 kill -9 $(pidof skipd)
+#swapon /dev/sda1
 sleep 1
 update_folder $MNT/jffs/scripts
 update_folder $MNT/jffs/configs
@@ -117,5 +112,7 @@ if [ -z $(echo "$0" | grep "unmount") ]; then
    echo 352 > /proc/sys/net/netfilter/nf_conntrack_expect_max
    service restart_conntrack
    sleep 1
-   echo 1 > /proc/sys/vm/drop_caches
+   echo 3 > /proc/sys/vm/drop_caches
+   cru a releaseMem "47 4 * * * echo 3 > /proc/sys/vm/drop_caches"
+   cru a restartHttpd "47 4 * * * service restart_httpd"
 fi
